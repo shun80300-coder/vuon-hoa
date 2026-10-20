@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mừng ngày phụ nữ Việt Nam 20-10</title>
+  
+  <!-- NHÚNG FONT CHỮ HIỆN ĐẠI, THƠ MỘNG TỪ GOOGLE FONTS -->
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* 1. KHUNG NỀN HỒNG NHẠT VÀ ĐỔI FONT CHỮ TOÀN TRANG */
+    body {
+      background: radial-gradient(circle, #4A0E17 , #A82C48, #F37A92);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-family: 'Quicksand', sans-serif; 
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tieu-de-container {
+      text-align: center;
+      margin-bottom: 30px;
+      z-index: 10;
+      font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    }
+
+    .tieu-de-container h1 {
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 2. HIỆU ỨNG TUYẾT RƠI LẤP LÁNH */
+    .hat-tuyet {
+      position: fixed;
+      top: -10px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: tuyetRoi linear infinite;
+    }
+
+    @keyframes tuyetRoi {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% {
+        transform: translateY(105vh) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    /* 3. CẤU TRÚC XẾP HÌNH TAM GIÁC (KIM TỰ THÁP) */
+    .thap-hoa {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      gap: 20px; 
+      z-index: 10;
+    }
+
+    .hang-hoa {
+      display: flex;
+      justify-content: center;
+      gap: 20px; 
+    }
+
+    .khung-hoa {
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* 4. ĐỊNH DẠNG HOA VÀ HIỆU ỨNG LẮC LƯ */
+    .hoa {
+      width: 75px; 
+      height: auto;
+      display: block;
+      transform-origin: bottom center; 
+      animation: hoaLacLu 3s ease-in-out infinite alternate;
+      transition: transform 0.2s ease;
+    }
+
+    .khung-hoa:hover .hoa {
+      filter: drop-shadow(0 6px 12px rgba(253, 201, 211, 0.7));
+      transform: scale(1.05);
+    }
+
+    .khung-hoa:active .hoa {
+      transform: scale(0.9);
+    }
+
+    @keyframes hoaLacLu {
+      0% { transform: rotate(-4deg); }
+      100% { transform: rotate(4deg); }
+    }
+
+    /* 5. KHUNG CHAT HIỂN THỊ CHÍNH GIỮA MÀN HÌNH (MODAL POPUP) */
+    .khung-hop-thoai-ong-giua {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7); 
+      background: rgba(255, 255, 255, 0.96);
+      color: #8A3B4E;
+      padding: 25px 35px;
+      border-radius: 24px;
+      font-size: 16px;
+      font-weight: 700;
+      text-align: center;
+      max-width: 80%;
+      line-height: 1.6;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+      border: 2px solid #FCD1D7;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .lop-nen-mo {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px); 
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    body.bat-popup .khung-hop-thoai-ong-giua {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    body.bat-popup .lop-nen-mo {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .nut-dong-popup {
+      margin-top: 15px;
+      background: #8A3B4E;
+      color: white;
+      border: none;
+      padding: 6px 18px;
+      border-radius: 12px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .nut-dong-popup:hover {
+      background: #A82C48;
+    }
+  </style>
+</head>
+<body> <!-- ĐÃ SỬA: Mở thẻ body chính xác ở đây -->
+
+  <!-- Phần tiêu đề chữ trắng -->
+  <div class="tieu-de-container">
+    <h1>Chọn một bông hoa nhé!</h1>
+  </div>
+
+  <!-- Khung tổng chứa 10 bông hoa dạng kim tự tháp -->
+  <div class="thap-hoa">
+    
+    <!-- Hàng 1: 1 bông -->
+    <div class="hang-hoa">
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này chính xác là dành riêng cho bạn, có thể trong tất cả các bông hoa ở đây thì bạn chính là bông hoa đẹp nhất trong ngày 20-10 này. Chúc bạn luôn xinh đẹp, quyến rũ và mang nét kiêu hãnh, ngọt ngào của một đóa hoa hồng nhung. Mong rằng bạn không chỉ tỏa hương sắc cho đời mà còn luôn được che chở, yêu thương bởi những điều tử tế nhất. Luôn rạng rỡ, ngập tràn sức sống và có nụ cười tỏa nắng như đóa hoa hướng dương luôn hướng về phía mặt trời. Mong trái tim ấm áp của bạn luôn là điểm tựa bình yên cho mọi người và chính bạn cũng sẽ tìm thấy hạnh phúc đích thực của riêng mình. 🌹🌻')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-e50a8595-f74f-428b-b4bb-f35c6aac74d1.png" alt="Hoa Đỏ" class="hoa">
+      </div>
+    </div>
+
+    <!-- Hàng 2: 2 bông -->
+    <div class="hang-hoa">
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-0a6d8c10-9c76-4467-9e21-396d0df82c92.png" alt="Hoa Xanh" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-0a6d8c10-9c76-4467-9e21-396d0df82c92.png" alt="Hoa Xanh" class="hoa">
+      </div>
+    </div>
+
+    <!-- Hàng 3: 3 bông -->
+    <div class="hang-hoa">
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-50354098-e263-4e6d-b08f-c167235d814b.png" alt="Hoa Tím" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-50354098-e263-4e6d-b08f-c167235d814b.png" alt="Hoa Tím" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-50354098-e263-4e6d-b08f-c167235d814b.png" alt="Hoa Tím" class="hoa">
+      </div>
+    </div>
+
+    <!-- Hàng 4: 4 bông -->
+    <div class="hang-hoa">
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-f4dbf506-d817-4a1a-a210-3d82f3dc9f09.png" alt="Hoa Hồng" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-f4dbf506-d817-4a1a-a210-3d82f3dc9f09.png" alt="Hoa Hồng" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-f4dbf506-d817-4a1a-a210-3d82f3dc9f09.png" alt="Hoa Hồng" class="hoa">
+      </div>
+      <div class="khung-hoa" onclick="moKhungChu('Bông hoa này không dành cho bạn rồi! Hãy thử chọn bông hoa khác nhé! ')">
+        <img src="https://cdn.phototourl.com/member/2026-10-20-f4dbf506-d817-4a1a-a210-3d82f3dc9f09.png" alt="Hoa Hồng" class="hoa">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KHU VỰC POPUP CHÍNH GIỮA MÀN HÌNH -->
+  <div class="lop-nen-mo" onclick="dongKhungChu()"></div>
+  <div class="khung-hop-thoai-ong-giua" id="hopThoaiCauChuc">
+    <div id="noiDungCauChuc"></div>
+    <button class="nut-dong-popup" onclick="dongKhungChu()">Đóng</button>
+  </div>
+
+  <!-- 6. ĐOẠN MÃ JAVASCRIPT ĐIỀU KHIỂN -->
+  <script>
+    const bieuMauPopup = document.getElementById('hopThoaiCauChuc');
+    const oNoiDungChuc = document.getElementById('noiDungCauChuc');
+
+    function moKhungChu(noiDungText) {
+      oNoiDungChuc.innerHTML = noiDungText; 
+      document.body.classList.add('bat-popup'); 
+    }
+
+    function dongKhungChu() {
+      document.body.classList.remove('bat-popup');
+    }
+
+    function taoHieuUngTuyet() {
+      const soLuongHat = 40; 
+      for (let i = 0; i < soLuongHat; i++) {
+        const tuyet = document.createElement('div');
+        tuyet.classList.add('hat-tuyet');
+        const size = Math.random() * 5 + 5;
+        tuyet.style.width = size + 'px';
+        tuyet.style.height = size + 'px';
+        tuyet.style.left = Math.random() * 100 + 'vw';
+        tuyet.style.animationDelay = Math.random() * 8 + 's';
+        tuyet.style.animationDuration = Math.random() * 5 + 4 + 's';
+        tuyet.style.opacity = Math.random() * 0.6 + 0.3;
+        document.body.appendChild(tuyet);
+      }
+    }
+    
+    taoHieuUngTuyet();
+  </script>
+
+</body> <!-- Đã đóng thẻ body đúng quy chuẩn -->
+</html> <!-- Đã đóng thẻ html đúng quy chuẩn -->
